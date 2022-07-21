@@ -1,13 +1,20 @@
 
 const Router = require('express').Router
-const luoAanestykset = require('../handlers/LuoAanestykset')
+
+const createPolls = require('../handlers/createpolls')
+const createVotes = require('../handlers/createvotes')
+const getPoll = require('../handlers/getpoll')
+const createPollsValidator = require('../datavalidate/createpolls')
+const createVotesValidator = require('../datavalidate/createvotes')
 
 
-module.exports = (app, client) => {
+module.exports = (app, db) => {
 
     const router = new Router()
 
-    router.post('/aanestykset', luoAanestykset(client))
+    router.post('/aanestykset', createPollsValidator, createPolls(db))
+    router.put('/aanestykset/:poll', createVotesValidator, createVotes(db))
+    router.get('/aanestykset/:poll', getPoll(db))
 
     app.use(router)
     

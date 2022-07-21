@@ -3,21 +3,22 @@ const setupBodyparser = require('./setup/bodyparser')
 const setupDatabase = require('./setup/database')
 const setupRouting = require('./setup/routing')
 
+
 const app = Express()
 
 setupBodyparser(app)
 
 
-setupDatabase()
+async function startAll() {
 
-    .then((client) =>{
+    const db = await setupDatabase()
+    setupRouting(app, db)
 
-        setupRouting(app, client)
-       
-        app.listen(4000, () =>{
-            console.log('Server päällä portissa 4000')
-        
-        })
+    app.listen(4000, () =>{
+        console.log('Server päällä portissa 4000')
+    
     })
 
-    .catch(console.error)
+}
+
+startAll().catch(console.error)
