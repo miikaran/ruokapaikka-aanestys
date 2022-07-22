@@ -4,6 +4,7 @@ module.exports = (db) => {
 
     return async(request, response) => {
 
+        //ÄÄNESTYKSISSÄ KÄYTETTY DATA//
         const data = {
 
             _id: v4(),

@@ -4,10 +4,10 @@ module.exports = async(request, response, next) => {
 
     try{
 
+        //PAKOLLISET ÄÄNET ENNEN LÄHETYSTÄ RAJAPINTAAN//
         await validateAll(request.body, {
 
-            choice: 'required',
-            ip: 'required|ipv4'          
+            choice: 'required',   
         })
 
         return next()

@@ -11,7 +11,11 @@ export default function CreatePoll(){
   const [pollSuccess, setpollSuccess] = useState([])
 
 
-  //lisää vastauksia
+  //RAJAPINTA//
+  const fetchUri = 'http://localhost:4000/aanestykset'
+
+
+  //LISÄÄ VASTAUKSIA//
   const addChoices = () => {
 
     setpollChoices([
@@ -24,7 +28,8 @@ export default function CreatePoll(){
   }
 
 
-  //poistaa vastauksia
+
+  //POISTAA VASTAUKSIA//
   const removeChoices = (index) => {
     const newChoices = choices.filter((choices, choiceIndex) =>{
         return choiceIndex !== index;
@@ -34,21 +39,23 @@ export default function CreatePoll(){
   }
 
 
-
+  //MUUTTAA VASTAUKSIA NIIDEN PÄIVITTYESSÄ//
   const onChange = (index, value) => {
     const newChoices = choices.map((choices, choiceIndex) => {
         if(choiceIndex === index){
             return value
         }
+        console.log(choices)
         
         return choices
+
     })
 
     setpollChoices(newChoices)
   }
 
 
-  //lisää äänestykset paikalliseen muistiin
+  //LISÄÄ ÄÄNESTYKSET PAIKALLISEEN MUISTIIN//
   const addPollsToLocalStorage = (successData) => {
 
     const existingPolls = JSON.parse(localStorage.getItem('aanestykset')) || []
@@ -67,10 +74,10 @@ export default function CreatePoll(){
 
 
 
-  //luo uuden äänestyksen valitulle palvelimelle.
+  //LÄHETTÄÄ UUDEN ÄÄNESTYKSEN RAJAPINTAAN//
   const createNewPoll = async () => {
 
-    const response = await fetch(`http://localhost:4000/aanestykset`, {
+    const response = await fetch(`${fetchUri}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -128,8 +135,8 @@ export default function CreatePoll(){
             {pollSuccess.pollId ? (
                 <div className="px-8">
                     <div className="w-full mb-2 bg-green-100 text-green-500 border border-green-500 rounded py-3 px-2">
-                        Äänestys luotu onnistuneesti.. <Link to={`/aanestykset/${setpollSuccess.pollId}`}>
-                            {process.env.REACT_APP_APP_URL}/aanestykset/{pollSuccess.pollId}
+                        Äänestys luotu onnistuneesti.. <Link to={`/aanestykset/${pollSuccess.pollId}`}>
+                            {fetchUri}/{pollSuccess.pollId}
                         </Link>
                     </div>
                 </div>

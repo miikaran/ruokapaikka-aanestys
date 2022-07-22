@@ -5,6 +5,7 @@ module.exports = async (request, response, next) => {
 
     try{
 
+        //PAKOLLISET INPUTIT ENNEN LÄHETYSTÄ//
         await validateAll(request.body, {
 
             title: 'required',
