@@ -1,5 +1,3 @@
-const {v4} = require('uuid')
-
 module.exports = (db) => {
 
     return async(request, response) => {
@@ -13,7 +11,7 @@ module.exports = (db) => {
                 'choices.$.count': 1
             }
         })
-
+    
         console.log(result)
 
         return response.json({

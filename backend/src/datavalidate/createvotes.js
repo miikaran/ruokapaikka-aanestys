@@ -6,7 +6,8 @@ module.exports = async(request, response, next) => {
 
         await validateAll(request.body, {
 
-            choice: 'required'          
+            choice: 'required',
+            ip: 'required|ipv4'          
         })
 
         return next()
