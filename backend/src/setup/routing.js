@@ -4,8 +4,8 @@ const Router = require('express').Router
 const createPolls = require('../handlers/createpolls')
 const createVotes = require('../handlers/createvotes')
 const getPoll = require('../handlers/getpoll')
-const createPollsValidator = require('../datavalidate/createpolls')
-const createVotesValidator = require('../datavalidate/createvotes')
+const createPollsValidator = require('../datavalidate/ValidatePolls')
+const createVotesValidator = require('../datavalidate/ValidateVotes')
 
 
 module.exports = (app, db) => {

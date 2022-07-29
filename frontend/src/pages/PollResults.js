@@ -1,17 +1,15 @@
 import {useEffect, useState} from 'react';
 import Button from '../components/viewButton'
-import CreatePoll from './CreatePoll'
 import { useParams } from 'react-router-dom';
+import Map  from '../components/Map'
 
 
 export default function PollResults() {
-
 
     const [ip, setIp] = useState(null)
     const [usedPoll, setusedPoll] = useState(null)
     const [hasVoted, sethasVoted] = useState(false)
     const [pollSuccess, setpollSuccess] = useState([])
-
 
 
     //ID ÄÄNESTYKSEEN
@@ -20,7 +18,6 @@ export default function PollResults() {
 
     //ÄÄNESTYKSEN URL
     const pollUrl = `http://localhost:4000/aanestykset/${poll}`
-
 
 
     //NOUTAA TIEDOT LUODUSTA ÄÄNESTYKSESTÄ//
@@ -81,6 +78,19 @@ export default function PollResults() {
         return Math.round((selectedChoice.count / allVotes) * 100)
     }
 
+
+    //TARKISTA TULOKSET ÄÄNESTYKSEN JÄLKEEN//   
+    const checkResult = async () => {
+
+        if(hasVoted === true){
+
+            fetchPoll()
+        }
+
+    }
+
+
+
     return (
         <div className="container mx-auto mt-16 px-5 text-white">
             <h1 className="my-5 text-3xl text-center text-dark">
@@ -94,12 +104,14 @@ export default function PollResults() {
 
                         {hasVoted && <span>Äänet - {getAllVotes()} </span>}
 
-                        <Button onClick={() => sethasVoted(true)}>Tarkista tulokset</Button>
+                        <Button onClick={checkResult}>Tarkista tulokset</Button>
                     </header>
+                    
 
                     {usedPoll.choices.map(choice => {
                         return (
-                            <div className='px-5 py-4 border-t border-gray-400 flex justify-between items-center' key={choice._id}>
+                            <div className='px-5 py-4 border-t border-gray-400 flex justify-between items-center' key={choice.name}>
+                                
                                 {choice.name}
 
                                 {hasVoted ? (
@@ -108,6 +120,8 @@ export default function PollResults() {
                             </div>
                         )
                     })}
+
+                    <Map />
                 </div>
             ) : null}
         </div>
