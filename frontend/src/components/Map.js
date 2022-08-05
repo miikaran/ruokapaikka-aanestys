@@ -11,17 +11,17 @@ export default function Map(props){
 
     let pollResult = []
 
+    //TARKISTETAAN VOITTAJA ÄÄNI, KOSKA PROPS = READONLY//
     if(props.pollWinner == "burgerit"){
-        pollResult = {burgerit}
+        pollResult = burgerit
+
     }
-    else{
-        console.log("noob")
+    else if(props.pollWinner == "grillit"){
+        pollResult = grillit
     }
 
 
-
-
-    //leafletjs parametrit
+    //LEAFLETJS PARAMETRIT//
     const startingPos = [60.4861, 22.1694]
     const zoom = 15
     const scrollWheelZoom = true
@@ -37,7 +37,7 @@ export default function Map(props){
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {pollResult.burgerit.map((ruokapaikat, key ) => (
+                {pollResult.map((ruokapaikat, key ) => (
 
                     <Marker
                     position={[ruokapaikat.lat, ruokapaikat.lng]}  

@@ -10,17 +10,20 @@ export default function PollResults() {
     const [usedPoll, setusedPoll] = useState(null)
     const [hasVoted, sethasVoted] = useState(false)
     const [pollSuccess, setpollSuccess] = useState([])
-    const [mapResult, setmapResult] = useState(false)
     const [pollResultData, setpollResultData] = useState()//KÄYTETÄÄN VOITTAVAN ÄÄNEN TUNNISTAMISEEN
+    let pollWinnerCount;
+    
     const noob = ["burgerit"]
 
 
-    //ID ÄÄNESTYKSEEN
+    //UUID ÄÄNESTYKSEEN
     const { poll } = useParams();
+    //TIETOKANNAN COLLECTION HOMMA
+    const mongoCollection = "aanestykset"
 
 
     //ÄÄNESTYKSEN URL
-    const pollUrl = `http://localhost:4000/aanestykset/${poll}`
+    const pollUrl = `http://localhost:4000/${mongoCollection}/${poll}`
 
 
     //NOUTAA TIEDOT LUODUSTA ÄÄNESTYKSESTÄ//
@@ -29,10 +32,13 @@ export default function PollResults() {
         const response = await fetch(pollUrl)
         const data = await response.json()
         setusedPoll(data)
-        setpollResultData([data.choices[0].count, data.choices[1].count])
         console.log(data)
-        console.log("Voittaja ääni määrä", Math.max(pollResultData[0], pollResultData[1]))
 
+        //ENITEN ÄÄNIÄ SAANUT VASTAUS
+        setpollResultData([data.choices[0].count, data.choices[1].count])
+        console.log(pollResultData)
+        pollWinnerCount = ("Voittaja ääni määrä", Math.max(pollResultData[0], pollResultData[1]))
+        console.log(pollWinnerCount)
     }
 
     useEffect(() => {
@@ -40,8 +46,6 @@ export default function PollResults() {
     }, [hasVoted])
 
     
-
-
 
 
     //PÄIVITTÄÄ TIEDOT MONGOON//
@@ -83,7 +87,6 @@ export default function PollResults() {
         if(allVotes === 0){
             return 0
         }
-        console.log()
         return Math.round((selectedChoice.count / allVotes) * 100)
     }
 
@@ -111,9 +114,9 @@ export default function PollResults() {
                     <header className='px-5 py-4 flex justify-between items-center'>
                         {usedPoll.title}
 
-                        {hasVoted && <span>Äänet - {getAllVotes()} </span>}
+                        {hasVoted && <span className="fw-bold">ÄÄNET - {getAllVotes()} </span>}
 
-                        <Button onClick={checkResult}>TARKISTA TULOKSET UUSIKSI</Button>
+                        <Button onClick={checkResult}>TARKISTA TULOKSET</Button>
                     </header>
                     
 
@@ -124,7 +127,7 @@ export default function PollResults() {
                                 {choice.name}
 
                                 {hasVoted ? (
-                                    <span className='text-blue-500'> {getChoicePercentage(choice)}% </span>
+                                    <span className='text-blue-500'>{getChoicePercentage(choice)}% </span>
                                 ) :  <Button onClick={() => userVote(choice._id)}>Äänestä</Button>}
                             </div>
                         )

@@ -122,7 +122,11 @@ export default function CreatePoll(){
             <label className="text-xl mb-2">Kaikki vastaukset</label>
             {choices.map((choice, index) => (
                 <div key={index} className="w-full flex items-center mb-5">
-                    <input onChange={(event) => onChange(index, event.target.value)} key={index} type="text" value={choice} className='border-2 w-full py-2 px-4' />
+                    <select onChange={(event) => onChange(index, event.target.value)} key={index} type="text" value={choice} className='border-2 w-full py-2 px-4'>
+                    <option>VALITSE RUOKAPAIKAT!</option>
+                    <option value="burgerit">BURGER MESTAT</option>
+                    <option value="grillit">GRILLI MESTAT</option>
+                    </select>
                     <button onClick={() => removeChoices(index)} className='py-2 ml-2 px-3 bg-red-500 text-white rounded hover:bg-red-600'>X</button>
                 </div>
             ))}
