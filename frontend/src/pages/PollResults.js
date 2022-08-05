@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import Button from '../components/viewButton'
 import { useParams } from 'react-router-dom';
-import Map  from '../components/Map'
+import Map from '../components/Map'
 
 
 export default function PollResults() {
@@ -10,6 +10,8 @@ export default function PollResults() {
     const [usedPoll, setusedPoll] = useState(null)
     const [hasVoted, sethasVoted] = useState(false)
     const [pollSuccess, setpollSuccess] = useState([])
+    const [mapResult, setmapResult] = useState(false)
+    const [pollResultData, setpollResultData] = useState()//KÄYTETÄÄN VOITTAVAN ÄÄNEN TUNNISTAMISEEN
 
 
     //ID ÄÄNESTYKSEEN
@@ -26,13 +28,18 @@ export default function PollResults() {
         const response = await fetch(pollUrl)
         const data = await response.json()
         setusedPoll(data)
-
+        setpollResultData([data.choices[0].count, data.choices[1].count])
         console.log(data)
+        console.log("Voittaja ääni määrä", Math.max(pollResultData[0], pollResultData[1]))
+
     }
 
     useEffect(() => {
         fetchPoll()
     }, [hasVoted])
+
+    
+
 
 
 
@@ -75,6 +82,7 @@ export default function PollResults() {
         if(allVotes === 0){
             return 0
         }
+        console.log()
         return Math.round((selectedChoice.count / allVotes) * 100)
     }
 
@@ -104,7 +112,7 @@ export default function PollResults() {
 
                         {hasVoted && <span>Äänet - {getAllVotes()} </span>}
 
-                        <Button onClick={checkResult}>Tarkista tulokset</Button>
+                        <Button onClick={checkResult}>TARKISTA TULOKSET UUSIKSI</Button>
                     </header>
                     
 
@@ -121,7 +129,11 @@ export default function PollResults() {
                         )
                     })}
 
-                    <Map />
+                    {hasVoted ? (
+                        <div>
+                            <Map />
+                        </div>
+                    ): null}
                 </div>
             ) : null}
         </div>

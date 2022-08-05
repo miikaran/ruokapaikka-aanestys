@@ -86,11 +86,13 @@ export default function CreatePoll(){
             title,
             choices
         })
+
     })
 
     const data = await response.json()
 
-    if(! response.ok){
+    if(!response.ok){
+        
         setpollErrors(data)
         return
     }
