@@ -28,7 +28,7 @@ export default function Map(props){
               
     return(
 
-        <div className="max-w-5xl mx-auto bg-white flex items-center">
+        <div className="mx-auto bg-white flex items-center">
 
             <MapContainer center={startingPos} zoom={zoom} scrollWheelZoom={scrollWheelZoom}>
 

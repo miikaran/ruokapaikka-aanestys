@@ -140,7 +140,7 @@ export default function CreatePoll(){
 
             {pollSuccess.pollId ? (
                 <div className="px-8">
-                    <div className="w-full mb-2 bg-green-100 text-green-500 border border-green-500 rounded py-3 px-2">
+                    <div className="w-full mb-0 mt-4 bg-green-100 text-green-500 border border-green-500 rounded py-3 px-2">
                         Äänestys luotu onnistuneesti.. <Link to={`/aanestykset/${pollSuccess.pollId}`}>
                             {fetchUri}/{pollSuccess.pollId}
                         </Link>
