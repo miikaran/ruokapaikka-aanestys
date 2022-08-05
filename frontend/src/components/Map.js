@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { Marker } from 'react-leaflet/Marker'
@@ -6,7 +7,19 @@ import burgerit from '../Ruokapaikka-JSONIT/BURGERIMESTAT.json'
 import grillit from '../Ruokapaikka-JSONIT/GRILLIT.json'
 
 
-export default function Map(){
+export default function Map(props){
+
+    let pollResult = []
+
+    if(props.pollWinner == "burgerit"){
+        pollResult = {burgerit}
+    }
+    else{
+        console.log("noob")
+    }
+
+
+
 
     //leafletjs parametrit
     const startingPos = [60.4861, 22.1694]
@@ -24,7 +37,7 @@ export default function Map(){
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-                {burgerit.map((ruokapaikat, key ) => (
+                {pollResult.burgerit.map((ruokapaikat, key ) => (
 
                     <Marker
                     position={[ruokapaikat.lat, ruokapaikat.lng]}  

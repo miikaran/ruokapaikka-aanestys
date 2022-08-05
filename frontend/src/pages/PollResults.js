@@ -12,6 +12,7 @@ export default function PollResults() {
     const [pollSuccess, setpollSuccess] = useState([])
     const [mapResult, setmapResult] = useState(false)
     const [pollResultData, setpollResultData] = useState()//KÄYTETÄÄN VOITTAVAN ÄÄNEN TUNNISTAMISEEN
+    const noob = ["burgerit"]
 
 
     //ID ÄÄNESTYKSEEN
@@ -131,7 +132,7 @@ export default function PollResults() {
 
                     {hasVoted ? (
                         <div>
-                            <Map />
+                            <Map pollWinner={noob} />
                         </div>
                     ): null}
                 </div>
