@@ -12,7 +12,8 @@ module.exports = (db) => {
             choices: request.body.choices.map(choice => ({
                 
                 name: choice,
-                count: 0,
+                count: 0, 
+                countitle: choice,
                 _id: v4()
 
            }))

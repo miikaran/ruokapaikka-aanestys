@@ -6,14 +6,14 @@ import Map from '../components/Map'
 
 export default function PollResults() {
 
-    const [ip, setIp] = useState(null)
     const [usedPoll, setusedPoll] = useState(null)
     const [hasVoted, sethasVoted] = useState(false)
     const [displayMap, setdisplayMap] = useState(false)
-    const [pollSuccess, setpollSuccess] = useState([])
-    const [pollResultData, setpollResultData] = useState()//KÄYTETÄÄN VOITTAVAN ÄÄNEN TUNNISTAMISEEN   
-    const [winner, setWinner] = useState([])//VOITTAVA ÄÄNI
-    let pollWinnerCount;  
+    let winner//VOITTAVA ÄÄNI
+
+    //forbidden cheese
+    const [pollResultData, setpollResultData] = useState()
+    let pollWinnerCount
 
 
     //UUID ÄÄNESTYKSEEN
@@ -25,6 +25,8 @@ export default function PollResults() {
     const pollUrl = `http://localhost:4000/${mongoCollection}/${poll}`
 
 
+
+
     //NOUTAA TIEDOT LUODUSTA ÄÄNESTYKSESTÄ//
     const fetchPoll = async () => {
         
@@ -33,11 +35,9 @@ export default function PollResults() {
         setusedPoll(data)
         console.log(data)
 
-        /*//ENITEN ÄÄNIÄ SAANUT VASTAUS
-        setpollResultData([data.choices[0].count, data.choices[1].count])
-        console.log(pollResultData)
-        pollWinnerCount = ("Voittaja ääni määrä", Math.max(pollResultData[0], pollResultData[1]))
-        console.log(pollWinnerCount)*/
+        /*setpollResultData([data.choices[0].count, data.choices[1].count])
+        pollWinnerCount = (Math.max(pollResultData[0], pollResultData[1]))
+        console.log("VOITTAJA ÄÄNI MÄÄRÄ:", pollWinnerCount)*/
     }
 
     useEffect(() => {
@@ -48,7 +48,7 @@ export default function PollResults() {
 
 
     //PÄIVITTÄÄ TIEDOT MONGOON//
-    const userVote = async (choice) => {
+    const userVote = async (choice, selectedChoice) => {
         
         await fetch(pollUrl, {
             
@@ -56,7 +56,7 @@ export default function PollResults() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ip, choice})
+            body: JSON.stringify({choice})
         })
 
         sethasVoted(true)
@@ -83,6 +83,13 @@ export default function PollResults() {
 
         const allVotes = getAllVotes()
 
+        //ENITEN ÄÄNIÄ SAANUT VASTAUS
+        if(selectedChoice.count > (allVotes - selectedChoice.count)){
+            console.log(selectedChoice.count)
+            winner = selectedChoice.name
+            console.log(winner)
+        }
+
         if(allVotes === 0){
             return 0
         }
@@ -96,9 +103,12 @@ export default function PollResults() {
         if(hasVoted === true){
 
             fetchPoll()
-            setdisplayMap(true)
+            alert("vastaus jolla eniten äänä")
+            setTimeout(() => {
+                alert(winner)
+                setdisplayMap(true)
+              }, 3000);
         }
-        setWinner("grillit");
     }
 
 
@@ -108,6 +118,7 @@ export default function PollResults() {
             <h1 className="fw-bold my-5 text-6xl text-center text-gray-800">
                 ÄÄNESTYS!!!
             </h1>
+
 
             {usedPoll ? (
                 <div className="w-full max-w-4xl mx-auto bg-gray-700 shadow">
@@ -135,7 +146,7 @@ export default function PollResults() {
 
                     {displayMap ? (
                         <div>
-                            <Map pollWinner={winner} />
+                            <Map POLLWINNER={winner} />
                         </div>
                     ): null}
                 </div>

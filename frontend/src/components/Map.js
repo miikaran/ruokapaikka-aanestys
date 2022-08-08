@@ -12,13 +12,25 @@ export default function Map(props){
     let pollResult = []
 
     //TARKISTETAAN VOITTAJA ÄÄNI, KOSKA PROPS = READONLY//
-    if(props.pollWinner == "burgerit"){
+    if(props.POLLWINNER == "burgerit"){
         pollResult = burgerit
-
     }
-    else if(props.pollWinner == "grillit"){
+    else if(props.POLLWINNER == "grillit"){
         pollResult = grillit
     }
+    /*
+    else if(props.POLLWINNER == "sushit"){
+        pollResult = sushit
+    }
+    else if(props.POLLWINNER == "kebut"){
+        pollResult = kebut
+    }
+    else if(props.POLLWINNER == "pizzat"){
+        pollResult = pizzat
+    }
+    else if(props.POLLWINNER== "kaupat"){
+        pollResult = kaupat
+    }*/
 
 
     //LEAFLETJS PARAMETRIT//

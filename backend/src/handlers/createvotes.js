@@ -9,10 +9,9 @@ module.exports = (db) => {
         }, {
 
             $inc: {
-                'choices.$.count': 1
+                'choices.$.count': 1,
             }
         })
-    
         console.log(result)
 
         return response.json({

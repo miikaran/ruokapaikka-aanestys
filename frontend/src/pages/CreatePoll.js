@@ -107,10 +107,10 @@ export default function CreatePoll(){
 
       <div className="p-12 w-full h-screen bg-gray-800 text-gray-900">
 
-        <div className="bg-white md:my-32 md:mx-60 p-5">
+        <div className="bg-white md:my-20 md:mx-60 p-5">
             
-            <h1 className="py-5">
-            ÄÄNESTYKSEN LUONTI
+            <h1 className="py-4">
+            UUDEN ÄÄNESTYKSEN LUONTI!
             </h1>
 
             <div className="mb-6">
@@ -122,12 +122,16 @@ export default function CreatePoll(){
             <label className="text-xl mb-2">Kaikki vastaukset</label>
             {choices.map((choice, index) => (
                 <div key={index} className="w-full flex items-center mb-5">
+                    <button onClick={() => removeChoices(index)} className='py-2 ml-2 px-3 bg-gray-900 text-white hover:bg-gray-700'>POISTA</button>
                     <select onChange={(event) => onChange(index, event.target.value)} key={index} type="text" value={choice} className='border-2 w-full py-2 px-4'>
                     <option>VALITSE RUOKAPAIKAT!</option>
                     <option value="burgerit">BURGER MESTAT</option>
                     <option value="grillit">GRILLI MESTAT</option>
+                    <option value="sushit">SUSHI MESTAT</option>
+                    <option value="kebut">KEBU MESTAT</option>
+                    <option value="pizzat">PIZZA MESTAT</option>
+                    <option value="kauppa">KAUPASTA JOTAIN</option>
                     </select>
-                    <button onClick={() => removeChoices(index)} className='py-2 ml-2 px-3 bg-red-500 text-white rounded hover:bg-red-600'>X</button>
                 </div>
             ))}
             </div>
@@ -139,13 +143,11 @@ export default function CreatePoll(){
 
 
             {pollSuccess.pollId ? (
-                <div className="px-8">
-                    <div className="w-full mb-0 mt-4 bg-green-100 text-green-500 border border-green-500 rounded py-3 px-2">
-                        Äänestys luotu onnistuneesti.. <Link to={`/aanestykset/${pollSuccess.pollId}`}>
+                    <div className="w-full mb-0 mt-4 text-gray-900 fw-bold border border-green-500 rounded py-3 px-2">
+                        Äänestys luotu onnistuneesti. Jaa allaoleva linkki kavereillesi <br></br> <Link to={`/aanestykset/${pollSuccess.pollId}`}>
                             {fetchUri}/{pollSuccess.pollId}
                         </Link>
                     </div>
-                </div>
             ) : null}
 
             {!pollSuccess.pollId ? (
