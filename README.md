@@ -6,7 +6,6 @@
 
 <br>
 
-> ## AVAA NÄIN:
 
 
 ### 1. Frontti
