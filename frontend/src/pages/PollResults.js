@@ -49,7 +49,7 @@ export default function PollResults() {
 
     //PÄIVITTÄÄ TIEDOT MONGOON//
     const userVote = async (choice, selectedChoice) => {
-        
+
         await fetch(pollUrl, {
             
             method: 'PUT',
@@ -58,7 +58,6 @@ export default function PollResults() {
             },
             body: JSON.stringify({choice})
         })
-
         sethasVoted(true)
     }
 
@@ -84,12 +83,10 @@ export default function PollResults() {
         const allVotes = getAllVotes()
 
         //ENITEN ÄÄNIÄ SAANUT VASTAUS
-        if(selectedChoice.count > (allVotes - selectedChoice.count)){
-            console.log(selectedChoice.count)
+        if(selectedChoice.count >= (allVotes - selectedChoice.count)){
             winner = selectedChoice.name
-            console.log(winner)
         }
-
+    
         if(allVotes === 0){
             return 0
         }
@@ -103,11 +100,10 @@ export default function PollResults() {
         if(hasVoted === true){
 
             fetchPoll()
-            alert("vastaus jolla eniten äänä")
-            setTimeout(() => {
-                alert(winner)
-                setdisplayMap(true)
-              }, 3000);
+            setdisplayMap(true)
+            console.log(winner)
+            alert(winner + " voitti jippii")
+            
         }
     }
 

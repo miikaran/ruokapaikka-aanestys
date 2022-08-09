@@ -5,6 +5,8 @@ import { Marker } from 'react-leaflet/Marker'
 import { Popup } from 'react-leaflet/Popup'
 import burgerit from '../Ruokapaikka-JSONIT/BURGERIMESTAT.json'
 import grillit from '../Ruokapaikka-JSONIT/GRILLIT.json'
+import kebut from '../Ruokapaikka-JSONIT/KEBABMESTAT.json'
+import kaupat from '../Ruokapaikka-JSONIT/KAUPAT.json'
 
 
 export default function Map(props){
@@ -18,24 +20,18 @@ export default function Map(props){
     else if(props.POLLWINNER == "grillit"){
         pollResult = grillit
     }
-    /*
-    else if(props.POLLWINNER == "sushit"){
-        pollResult = sushit
-    }
     else if(props.POLLWINNER == "kebut"){
         pollResult = kebut
     }
-    else if(props.POLLWINNER == "pizzat"){
-        pollResult = pizzat
-    }
-    else if(props.POLLWINNER== "kaupat"){
+
+    else if(props.POLLWINNER == "kaupat"){
         pollResult = kaupat
-    }*/
+    }
 
 
     //LEAFLETJS PARAMETRIT//
     const startingPos = [60.4861, 22.1694]
-    const zoom = 15
+    const zoom = 10
     const scrollWheelZoom = true
               
     return(

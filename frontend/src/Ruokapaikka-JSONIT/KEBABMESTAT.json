@@ -1,0 +1,33 @@
+[
+
+    {
+
+        "paikka": "Rio Kebab Pizzeria",
+        "lat": "60.485721312089154",
+        "lng":  "22.17061394775281"
+
+    },
+    {
+        "paikka": "Dallas Ravintola Kebab Pizzeria",
+        "lat": "60.48516734331045",
+        "lng":  "22.165730372029707" 
+    },
+    {
+        "paikka": "Royal Fusion",
+        "lat": "60.485818780652444",
+        "lng":  "22.152284458747552" 
+    },
+    {
+        "paikka": "Raision Kebab pizzeria",
+        "lat": "60.499388957622905",
+        "lng":  "22.158979252565814" 
+    },
+    {
+        "paikka": "Naantalin Kebab Pizzeria",
+        "lat": "60.48645302761238",
+        "lng":  "22.09271796298082" 
+    }
+
+
+
+]

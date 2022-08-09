@@ -105,9 +105,9 @@ export default function CreatePoll(){
 
   return (
 
-      <div className="p-12 w-full h-screen bg-gray-800 text-gray-900">
+      <div className="p-12 h-screen bg-gray-800 text-gray-900">
 
-        <div className="bg-white md:my-20 md:mx-60 p-5">
+        <div className="bg-white md:my-32 md:mx-80 p-5">
             
             <h1 className="py-4">
             UUDEN ÄÄNESTYKSEN LUONTI!
@@ -118,7 +118,7 @@ export default function CreatePoll(){
                 <input onChange={(event) => setpollTitle(event.target.value)} value={title} className=' w-full py-2 border-2 px-4' />
             </div>
 
-            <div className="mb-3">
+            <div className="mb-3"> 
             <label className="text-xl mb-2">Kaikki vastaukset</label>
             {choices.map((choice, index) => (
                 <div key={index} className="w-full flex items-center mb-5">
@@ -127,10 +127,8 @@ export default function CreatePoll(){
                     <option>VALITSE RUOKAPAIKAT!</option>
                     <option value="burgerit">BURGER MESTAT</option>
                     <option value="grillit">GRILLI MESTAT</option>
-                    <option value="sushit">SUSHI MESTAT</option>
                     <option value="kebut">KEBU MESTAT</option>
-                    <option value="pizzat">PIZZA MESTAT</option>
-                    <option value="kauppa">KAUPASTA JOTAIN</option>
+                    <option value="kaupat">KAUPASTA JOTAIN</option>
                     </select>
                 </div>
             ))}
