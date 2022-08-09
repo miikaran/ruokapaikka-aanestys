@@ -2,6 +2,7 @@
 
 > - Pieni ReactJS appi jolla voi äänestää ruokapaikkoja kaveriporukalla.
 > - Tein pääosin vain tietokanta & rajapinta harjottelua varten käyttäen **=>** **NodeJS**,  **MongoDB** ,  **ExpressJS**, sekä fronttiin **ReactJS**.
+> - Karttana käytin LeafletJS kirjastoa.
 
 
 <br>
