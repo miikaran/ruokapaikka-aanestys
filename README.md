@@ -6,13 +6,14 @@
 
 <br>
 
-### Miten toimii?
+## Miten toimii?
+     
+      1. Lisää äänestyksen nimi
+      2. Lisää vastaukset, eli ruokapaikat joiden välillä haluatte äänestää.
+      3. Luo äänestys, ja klikkaa alla näkyvää linkkiä.
+      4. Jaa linkki haluamillesi kavereille.
+      5. Äänestäkää ja lopuksi tarkistakaa tulokset.
 
-1. Lisää äänestyksen nimi <br>
-2. Lisää vastaukset, eli ruokapaikat joiden välillä haluatte äänestää.
-3. Luo äänestys, ja klikkaa alla näkyvää linkkiä.
-4. Jaa linkki haluamillesi kavereille.
-5. Äänestäkää ja lopuksi tarkistakaa tulokset.
 
 <br>
 
