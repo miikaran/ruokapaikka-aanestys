@@ -1,6 +1,6 @@
 # RUOKAPAIKKA-AANESTYS
 
-> - Pieni ReactJS appi jolla voi äänestää ruokapaikkoja kaveriporukalla raision ruokapaikoista.
+> - Pieni ReactJS appi jolla voi äänestää kaveriporukalla raision ruokapaikoista.
 > - Tein pääosin vain tietokanta & rajapinta harjottelua varten käyttäen **=>** **NodeJS**,  **MongoDB** ,  **ExpressJS**, sekä fronttiin **ReactJS**.
 > - Karttana käytin **LeafletJS** kirjastoa.
 
