@@ -1,3 +1,1 @@
-# ReactJS
 
-### `npm start`
